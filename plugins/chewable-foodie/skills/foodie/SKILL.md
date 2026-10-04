@@ -1,6 +1,6 @@
 ---
 name: foodie
-description: Use the user's Chewable Foodie recipes, family meal plan and shared shopping list. Use when the user asks what to cook, wants to plan meals for a day or week, asks about or changes their shopping or grocery list, or wants to save a recipe to Foodie.
+description: Use the user's Chewable Foodie recipes, family meal plan and shared shopping list. Use when the user asks what to cook, wants to plan meals for a day or week, asks about or changes their shopping or grocery list, wants to save or import a recipe (including from a link, Instagram, TikTok or YouTube), or asks what they cooked recently.
 ---
 
 # Chewable Foodie
@@ -15,7 +15,21 @@ once. Treat writes as visible to other people.
   before you quote ingredients or steps; never guess them.
 - An empty query lists the most recently saved recipes. Use it for "what
   have I saved lately" or when the user has no dish in mind.
-- Suggest recipes the user already has before inventing new ones.
+- Suggest recipes the user already has before inventing new ones. When the
+  family has no match, search_recipes returns recipes from Foodie's public
+  catalogue (`fromCatalogue: true`). They can be planned and shopped like the
+  family's own; say they come from the catalogue.
+- The recipe cards, the recipe, the shopping list and the meal plan show up
+  as a widget in the chat. Do not repeat its contents; add only what the user
+  needs on top.
+
+## Before suggesting or planning
+
+- `get_food_preferences` gives the user's diet and cooking goals. Respect them.
+  It does not include allergies: ask the user if it matters.
+- `get_cooking_history` shows what the family cooked lately. Avoid repeating
+  last week's dinners unless the user asks for them.
+- When the user says they cooked something, offer `mark_cooked`.
 
 ## Planning meals
 
@@ -33,10 +47,22 @@ first, then plan the returned id.
   they have some items already, use `get_recipe` and add only the rest with
   `add_to_shopping_list`.
 - After planning a week, offer to add the ingredients in one go.
+- Items already on the list with the same amount are skipped and listed in
+  `alreadyOnList`. Mention them instead of adding them twice.
 - `set_shopping_items_checked` and `remove_shopping_items` need item ids
   from `get_shopping_list`. Read the list first.
 - `remove_shopping_items` deletes for the whole family. Confirm the items
   by name before you call it.
+
+## Importing from a link
+
+1. `read_recipe_page` with the link. Foodie fetches the page; you read it.
+2. `source: "recipe-markup"`: name, ingredients and steps are filled in. Use
+   them as they are.
+3. Otherwise read the recipe from `text` (a caption, or the page's text).
+   Write each ingredient with its amount. If there is no recipe in the text,
+   say so; never invent one.
+4. `save_recipe` with `sourceUrl`, `imageUrl` and `author` from the result.
 
 ## Saving recipes
 
@@ -44,6 +70,8 @@ first, then plan the returned id.
 - One step per entry, in order.
 - Pass `sourceUrl` when the recipe came from a web page.
 - Search first, so you do not save a recipe the user already has.
+- `alreadySaved: true` means the same name was saved moments ago (a retry).
+  Tell the user it is saved; do not save again.
 
 ## Limits
 

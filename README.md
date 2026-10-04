@@ -8,7 +8,8 @@ Ask things like:
 - "Plan dinners for this week from my Foodie recipes"
 - "What's on my shopping list?"
 - "Add the ingredients for my lasagne to the shopping list"
-- "Save this recipe to Foodie"
+- "Save this recipe to Foodie: https://…" (recipe sites, Instagram, TikTok, YouTube)
+- "What did we eat last week?"
 
 Changes show up at once in the Foodie app, for everyone in your family.
 
