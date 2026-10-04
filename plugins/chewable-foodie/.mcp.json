@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "chewable-foodie": {
+      "type": "http",
+      "url": "https://foodieapi.chewable.fit/mcp"
+    }
+  }
+}

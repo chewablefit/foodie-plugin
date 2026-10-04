@@ -1,7 +1,7 @@
-# Chewable Foodie for ChatGPT and Codex
+# Chewable Foodie for ChatGPT, Codex and Claude
 
 Use your [Foodie](https://foodie.chewable.fit) recipes, your family's meal plan
-and your shared shopping list from ChatGPT or Codex.
+and your shared shopping list from ChatGPT, Codex or Claude.
 
 Ask things like:
 
@@ -23,6 +23,23 @@ Changes show up at once in the Foodie app, for everyone in your family.
 
 You need a Foodie account first: sign in once in the iPhone app.
 
+## Install in Claude
+
+In Claude Code:
+
+```
+/plugin marketplace add chewablefit/foodie-plugin
+/plugin install chewable-foodie@chewable
+```
+
+Or from your shell: `claude plugin marketplace add chewablefit/foodie-plugin`,
+then `claude plugin install chewable-foodie@chewable`. Sign in with Apple when
+Claude asks to connect the Foodie server.
+
+In claude.ai or the Claude desktop app you can also skip the plugin: Settings →
+Connectors → Add custom connector, paste `https://foodieapi.chewable.fit/mcp`
+and sign in with Apple.
+
 ## What's inside
 
 | Path | What it is |
@@ -30,7 +47,10 @@ You need a Foodie account first: sign in once in the iPhone app.
 | `plugins/chewable-foodie/plugin.json` | Name, description and links for the plugin directory |
 | `plugins/chewable-foodie/mcp.json` | The Foodie MCP server, `https://foodieapi.chewable.fit/mcp` |
 | `plugins/chewable-foodie/skills/foodie/SKILL.md` | How the assistant should use the Foodie tools |
-| `.agents/plugins/marketplace.json` | Makes this repo installable as a marketplace |
+| `plugins/chewable-foodie/.mcp.json` | The same server, in Claude's format |
+| `plugins/chewable-foodie/.claude-plugin/plugin.json` | The plugin's manifest for Claude |
+| `.agents/plugins/marketplace.json` | Makes this repo installable as a marketplace in ChatGPT and Codex |
+| `.claude-plugin/marketplace.json` | Makes this repo installable as a marketplace in Claude |
 
 ## Without the plugin
 
