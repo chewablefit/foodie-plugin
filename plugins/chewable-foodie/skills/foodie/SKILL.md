@@ -71,10 +71,20 @@ first, then plan the returned id.
 
 ## Shopping list
 
-- `add_recipe_to_shopping_list` adds every ingredient. When the user says
-  they have some items already, use `get_recipe` and add only the rest with
-  `add_to_shopping_list`.
-- After planning a week, offer to add the ingredients in one go.
+- When the user asks to add a Foodie recipe to the shopping list, use
+  `add_recipe_to_shopping_list` with its `recipeId`. By default it adds ONE
+  entry linked to the recipe, with its name and servings. This also works for
+  recipes from the public catalogue. Omit `expandIngredients`, or pass
+  `expandIngredients: false`, for a whole recipe as one entry.
+- Pass `expandIngredients: true` only when the user asks for separate
+  ingredient items. When they already have some ingredients, use `get_recipe`
+  and add only the missing ones with `add_to_shopping_list`.
+- `add_to_shopping_list` is for groceries or selected ingredients. Never use
+  it to create a plain item named after a Foodie recipe: that loses the recipe
+  link. If adding the linked recipe fails, report the failure instead of
+  silently substituting an unlinked item.
+- After planning a week, offer to add the recipes as linked shopping entries.
+  Expand their ingredients only if the user asks for that.
 - Items already on the list with the same amount are skipped and listed in
   `alreadyOnList`. Mention them instead of adding them twice.
 - `set_shopping_items_checked` and `remove_shopping_items` need item ids

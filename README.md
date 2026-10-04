@@ -8,7 +8,8 @@ Ask things like:
 
 - "Plan dinners for this week from my Foodie recipes"
 - "I have eggs, spinach and feta. What can I make?"
-- "Add the ingredients for my lasagne to the shopping list"
+- "Add my lasagne to the shopping list as one recipe"
+- "Add the ingredients for my lasagne as separate shopping items"
 - "Save this recipe to Foodie: https://…" (recipe sites, Instagram, TikTok, YouTube)
 - "Walk me through the carbonara, step by step"
 - "What did we eat last week?"
@@ -64,6 +65,16 @@ yourself (needs a paid plan):
 
 Clients that connect the server without the plugin get the same rules in a
 shorter form, from the server's own instructions.
+
+## Shopping for a recipe
+
+Adding a Foodie recipe puts one entry on the shopping list, linked to the
+recipe, with its name and servings. Ask for separate ingredients when you
+want individual shopping items instead. The assistant uses
+`add_recipe_to_shopping_list` with `recipeId` for both: its default adds the
+linked recipe; `expandIngredients: true` adds the ingredients separately.
+`add_to_shopping_list` is for groceries and selected ingredients, not a
+replacement for a linked recipe entry.
 
 ## What's inside
 

@@ -10,13 +10,19 @@ iPhone, for everyone in your family.
 - Find recipes by name or ingredient, and see which ones you can make with what
   you have at home, and what is missing
 - Plan dinners for the week from recipes you already have
-- Put a recipe's ingredients on the shopping list, add single items, tick off
-  what you bought
+- Add a recipe to the shopping list as one linked entry, ask for separate
+  ingredients instead, add single items, and tick off what you bought
 - Save a recipe from a link: a recipe site, an Instagram or TikTok post, or a
   YouTube video
 - Cook step by step, with a timer where a step names a time, and rate what you
   cooked
 - Share a recipe as a link
+
+Adding a recipe uses `add_recipe_to_shopping_list` with its `recipeId`.
+By default, it adds one entry linked to the recipe, with its name and
+servings. `expandIngredients: true` adds separate ingredient items when
+requested. `add_to_shopping_list` adds groceries or selected ingredients;
+it must not replace a linked recipe with a plain item bearing its name.
 
 ## What it contains
 
