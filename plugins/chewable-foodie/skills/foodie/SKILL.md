@@ -1,6 +1,6 @@
 ---
 name: foodie
-description: Use the user's Chewable Foodie recipes, family meal plan and shared shopping list. Use when the user asks what to cook, wants to plan meals for a day or week, asks about or changes their shopping or grocery list, wants to save or import a recipe (including from a link, Instagram, TikTok or YouTube), or asks what they cooked recently.
+description: Use the user's Chewable Foodie recipes, family meal plan and shared shopping list. Use when the user asks what to cook, wants to plan meals for a day or week, asks about or changes their shopping or grocery list, wants to save or import a recipe (including from a link, Instagram, TikTok or YouTube), asks what they cooked recently, asks what they can make with what they have, or wants to cook a recipe step by step.
 ---
 
 # Chewable Foodie
@@ -29,7 +29,35 @@ once. Treat writes as visible to other people.
   It does not include allergies: ask the user if it matters.
 - `get_cooking_history` shows what the family cooked lately. Avoid repeating
   last week's dinners unless the user asks for them.
-- When the user says they cooked something, offer `mark_cooked`.
+- When the user says they cooked something, offer `mark_cooked`, with a
+  rating (1-5) if they give one.
+
+## What can I make?
+
+When the user lists what they have ("eggs, spinach and feta"), call
+`find_recipes_by_ingredients` with one ingredient per entry. Results show
+what is missing for each recipe. Offer to add the missing items with
+`add_to_shopping_list`; the widget has a button for it too.
+
+## Cooking
+
+- In the widget, "Start cooking" opens cook mode next to the chat: one step at
+  a time, with a timer where a step names a time, and a rating at the end.
+  Stay available for questions like "can I use butter instead?".
+- Hands-free or by voice, use `get_cooking_step` one step at a time. Read the
+  step in a sentence or two and offer the timer (`timerMinutes`).
+
+## Sharing
+
+`share_recipe` makes a recipe viewable by anyone with the link. Call it only
+when the user asks for a link to share.
+
+## Weekly plan
+
+If the user wants a plan every week, offer to set up a scheduled task: every
+Sunday at 17:00, plan next week's dinners from their recipes, following
+their preferences and avoiding the last two weeks, and add what is missing
+to the shopping list once they say yes.
 
 ## Planning meals
 
