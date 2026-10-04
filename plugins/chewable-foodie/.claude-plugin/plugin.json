@@ -1,7 +1,7 @@
 {
   "name": "chewable-foodie",
   "displayName": "Chewable Foodie",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Your Foodie recipes, family meal plan and shared shopping list. Plan the week, fill the shopping list, import recipes from links (sites, Instagram, TikTok, YouTube), find what you can make with what you have, and cook step by step.",
   "author": {
     "name": "Chewable",
@@ -9,7 +9,15 @@
   },
   "homepage": "https://foodie.chewable.fit/connect",
   "repository": "https://github.com/chewablefit/foodie-plugin",
-  "keywords": ["recipes", "meal planning", "shopping list", "grocery list", "cooking", "family"],
+  "license": "MIT",
+  "keywords": [
+    "recipes",
+    "meal planning",
+    "shopping list",
+    "grocery list",
+    "cooking",
+    "family"
+  ],
   "icon": "./assets/logo.png",
   "documentationUrl": "https://foodie.chewable.fit/connect",
   "supportUrl": "https://foodie.chewable.fit",
