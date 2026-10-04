@@ -1,14 +1,24 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "chewable-foodie",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Your Foodie recipes, family meal plan and shared shopping list, inside ChatGPT.",
   "author": {
     "name": "Chewable",
     "url": "https://foodie.chewable.fit"
   },
   "homepage": "https://foodie.chewable.fit/connect",
-  "keywords": ["recipes", "meal planning", "meal plan", "shopping list", "grocery list", "cooking", "dinner ideas", "family"],
+  "license": "MIT",
+  "keywords": [
+    "recipes",
+    "meal planning",
+    "meal plan",
+    "shopping list",
+    "grocery list",
+    "cooking",
+    "dinner ideas",
+    "family"
+  ],
   "extensions": {
     "com.openai": {
       "interface": {
@@ -17,7 +27,10 @@
         "longDescription": "Chewable Foodie connects ChatGPT to your recipe box, your family's meal plan and your shared shopping list in the Foodie app.\n\nAsk ChatGPT to:\n- Find a saved recipe by name or ingredient (\"what can I make with lentils?\")\n- Plan dinners for the week from recipes you already have\n- Put a recipe's ingredients on the shopping list, or add single items\n- Check off what you bought, or clear items you no longer need\n- Import a recipe from a link: a recipe site, an Instagram or TikTok post, or a YouTube video\n- Remember what you cooked, so the next plan does not repeat last week\n- Tell it what is in the fridge and see which recipes you can make\n- Cook step by step with timers, in a window next to the chat\n\nEverything you change shows up at once in the Foodie app on iPhone, for everyone in your family. You sign in with your Foodie account (Sign in with Apple). You can see and disconnect the connection in the app under Settings, ChatGPT & Claude.",
         "developerName": "Chewable",
         "category": "Lifestyle",
-        "capabilities": ["Read", "Write"],
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
         "websiteURL": "https://foodie.chewable.fit",
         "privacyPolicyURL": "https://foodie.chewable.fit/privacy",
         "termsOfServiceURL": "https://foodie.chewable.fit/terms",
