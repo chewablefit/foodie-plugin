@@ -1,0 +1,15 @@
+{
+  "name": "chewable",
+  "description": "Chewable's plugins for Claude",
+  "owner": {
+    "name": "Chewable",
+    "url": "https://foodie.chewable.fit"
+  },
+  "plugins": [
+    {
+      "name": "chewable-foodie",
+      "source": "./plugins/chewable-foodie",
+      "description": "Your Foodie recipes, family meal plan and shared shopping list: plan, shop, import recipes from links and cook step by step."
+    }
+  ]
+}
