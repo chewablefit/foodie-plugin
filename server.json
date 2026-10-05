@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.chewablefit/foodie",
+  "name": "io.github.ggi3201/foodie",
   "title": "Chewable Foodie",
   "description": "Your recipes, family meal plan and shopping list from Foodie, in ChatGPT, Claude and Codex.",
   "version": "1.2.2",
