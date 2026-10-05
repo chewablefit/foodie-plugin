@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.chewablefit/foodie",
+  "title": "Chewable Foodie",
+  "description": "Your recipes, family meal plan and shopping list from Foodie, in ChatGPT, Claude and Codex.",
+  "version": "1.2.2",
+  "websiteUrl": "https://foodie.chewable.fit",
+  "repository": {
+    "url": "https://github.com/chewablefit/foodie-plugin",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://foodieapi.chewable.fit/mcp"
+    }
+  ]
+}
