@@ -16,7 +16,6 @@ iPhone, for everyone in your family.
   YouTube video
 - Cook step by step, with a timer where a step names a time, and rate what you
   cooked
-- Share a recipe as a link
 
 Adding a recipe uses `add_recipe_to_shopping_list` with its `recipeId`.
 By default, it adds one entry linked to the recipe, with its name and
