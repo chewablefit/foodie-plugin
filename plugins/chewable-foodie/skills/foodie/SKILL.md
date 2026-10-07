@@ -1,6 +1,6 @@
 ---
 name: foodie
-description: Use the user's Chewable Foodie recipes, family meal plan and shared shopping list. Use when the user asks what to cook, wants to plan meals for a day or week, asks about or changes their shopping or grocery list, wants to save or import a recipe (including from a link, Instagram, TikTok or YouTube), asks what they cooked recently, asks what they can make with what they have, or wants to cook a recipe step by step.
+description: Use the user's Chewable Foodie recipes, family meal plan and shared shopping list. Use when the user asks what to cook, wants to plan meals for a day or week, asks about or changes their shopping or grocery list, wants to save, import, change or delete a recipe (including from a link, Instagram, TikTok or YouTube), asks what they cooked recently, asks what they can make with what they have, or wants to cook a recipe step by step.
 ---
 
 # Chewable Foodie
@@ -11,8 +11,14 @@ once. Treat writes as visible to other people.
 
 ## Finding recipes
 
-- Start with `search_recipes`. It returns summaries only. Call `get_recipe`
-  before you quote ingredients or steps; never guess them.
+- Start with `search_recipes`. It returns summaries as data and shows
+  nothing. Search once, with a broad query in the singular (`lentil`, not
+  `lentils` and then `lentil`), and search again only if it found nothing.
+  Call `get_recipe` before you quote ingredients or steps; never guess them.
+- When the user asks to find, browse or choose something to cook, call
+  `show_recipes` once with the ids of the recipes you found (or the best few)
+  before you reply. It shows them as cards. Skip it when nothing was found or
+  the user wants text only, and do not call it again for the same recipes.
 - An empty query lists the most recently saved recipes. Use it for "what
   have I saved lately" or when the user has no dish in mind.
 - Suggest recipes the user already has before inventing new ones. When the
@@ -21,7 +27,9 @@ once. Treat writes as visible to other people.
   family's own; say they come from the catalogue.
 - The recipe cards, the recipe, the shopping list and the meal plan show up
   as a widget in the chat. Do not repeat its contents; add only what the user
-  needs on top.
+  needs on top. Every view you open takes its own pane, so read a recipe, the
+  shopping list and the meal plan once per question: a list or plan already
+  on screen keeps itself current.
 
 ## Before suggesting or planning
 
@@ -35,9 +43,10 @@ once. Treat writes as visible to other people.
 ## What can I make?
 
 When the user lists what they have ("eggs, spinach and feta"), call
-`find_recipes_by_ingredients` with one ingredient per entry. Results show
-what is missing for each recipe. Offer to add the missing items with
-`add_to_shopping_list`; the widget has a button for it too.
+`find_recipes_by_ingredients` with one ingredient per entry. It shows its own
+view with what is missing for each recipe, so do not follow it with
+`show_recipes`. Offer to add the missing items with `add_to_shopping_list`;
+the widget has a button for it too.
 
 ## Cooking
 
@@ -46,6 +55,22 @@ what is missing for each recipe. Offer to add the missing items with
   Stay available for questions like "can I use butter instead?".
 - Hands-free or by voice, use `get_cooking_step` one step at a time. Read the
   step in a sentence or two and offer the timer (`timerMinutes`).
+
+## Changing recipes
+
+`edit_recipe`, `delete_recipe` and `set_recipe_image` only work on the
+family's own recipes, never on catalogue ones or ones published in the
+catalogue. Everyone in the family sees the change.
+
+- `edit_recipe` changes only the fields you give it. Ingredients and
+  instructions replace the whole list: read the recipe with `get_recipe`
+  first and send the complete new list.
+- `delete_recipe` cannot be undone. Say which recipe, by name, and that its
+  cooking history and ratings go with it, and wait for a yes. It also comes
+  off the meal plan, the collections and the shopping list.
+- `set_recipe_image` replaces the photo, from a link (`imageUrl`) or from the
+  picture's bytes (`imageBase64`, up to 5 MB) if you can read the user's
+  attachment. Never invent a link.
 
 ## Sharing
 
