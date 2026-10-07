@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "chewable-foodie",
-  "version": "1.3.0",
-  "description": "Your Foodie recipes, family meal plan and shared shopping list, inside ChatGPT.",
+  "version": "1.3.1",
+  "description": "Your Foodie recipes, family meal plan and shared shopping list, in your assistant.",
   "author": {
     "name": "Chewable",
     "url": "https://foodie.chewable.fit"
@@ -24,9 +24,9 @@
       "interface": {
         "displayName": "Chewable Foodie",
         "shortDescription": "Recipes, meal plans, shopping",
-        "longDescription": "Chewable Foodie connects ChatGPT to your recipe box, your family's meal plan and your shared shopping list in the Foodie app.\n\nAsk ChatGPT to:\n- Find a saved recipe by name or ingredient (\"what can I make with lentils?\")\n- Plan dinners for the week from recipes you already have\n- Add a linked recipe to the shopping list, expand its ingredients, or add single items\n- Check off what you bought, or clear items you no longer need\n- Import a recipe from a link: a recipe site, an Instagram or TikTok post, or a YouTube video\n- Remember what you cooked, so the next plan does not repeat last week\n- Tell it what is in the fridge and see which recipes you can make\n- Cook step by step with timers, in a window next to the chat\n\nEverything you change shows up at once in the Foodie app on iPhone, for everyone in your family. You sign in with your Foodie account (Sign in with Apple). You can see and disconnect the connection in the app under Settings, ChatGPT & Claude.",
+        "longDescription": "Chewable Foodie connects your assistant to your recipe box, your family's meal plan and your shared shopping list in the Foodie app.\n\nAsk your assistant to:\n- Find a saved recipe by name or ingredient (\"what can I make with lentils?\")\n- Plan dinners for the week from recipes you already have\n- Add a linked recipe to the shopping list, expand its ingredients, or add single items\n- Check off what you bought, or clear items you no longer need\n- Import a recipe from a link: a recipe site, an Instagram or TikTok post, or a YouTube video\n- Remember what you cooked, so the next plan does not repeat last week\n- Tell it what is in the fridge and see which recipes you can make\n- Cook step by step with timers, in a window next to the chat\n\nEverything you change shows up at once in the Foodie app on iPhone, for everyone in your family. You sign in with your Foodie account (Sign in with Apple). You can see and disconnect the connection in the Foodie app under Settings.",
         "developerName": "Chewable",
-        "category": "Lifestyle",
+        "category": "Productivity",
         "capabilities": [
           "Read",
           "Write"
@@ -41,11 +41,61 @@
         "defaultPrompt": [
           "Plan dinners for this week from my Foodie recipes",
           "What's on my shopping list?",
-          "Add the ingredients for my lasagne to the shopping list",
-          "Save this recipe to Foodie: ",
-          "I have eggs, spinach and feta. What can I make?",
-          "Every Sunday, plan next week's dinners from my Foodie recipes"
-        ]
+          "I have eggs, spinach and feta. What can I make?"
+        ],
+        "supportURL": "https://github.com/chewablefit/foodie-plugin/issues"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Find saved recipes and show them",
+              "prompt": "What can I make with lentils from my Foodie recipes?",
+              "tools_triggered": "search_recipes, show_recipes, get_recipe",
+              "expected_behavior": "Searches the family's recipes once, finds \"Red lentil soup\", shows it as a card, and reads its ingredients and steps from get_recipe."
+            },
+            {
+              "description": "Plan dinners on the meal plan",
+              "prompt": "Put Beef tacos on Thursday and Vegetable lasagne on Friday.",
+              "tools_triggered": "search_recipes, get_meal_plan, plan_meal",
+              "expected_behavior": "Finds both saved recipes, checks that Thursday and Friday are free, and plans Beef tacos on Thursday and Vegetable lasagne on Friday. The meal plan in the Foodie app shows both."
+            },
+            {
+              "description": "Add a recipe to the shared shopping list",
+              "prompt": "Add the vegetable lasagne to my shopping list.",
+              "tools_triggered": "search_recipes, add_recipe_to_shopping_list, get_shopping_list",
+              "expected_behavior": "Adds one shopping list entry linked to the Vegetable lasagne recipe. It shows under \"Recipes\" in the shopping list and in the Foodie app."
+            },
+            {
+              "description": "Import a recipe from a link",
+              "prompt": "Save this recipe to Foodie: https://www.bbcgoodfood.com/recipes/easy-pancakes",
+              "tools_triggered": "read_recipe_page, search_recipes, save_recipe",
+              "expected_behavior": "Reads the page, checks that the recipe is not already saved, and saves \"Easy pancakes\" with its photo, source link and author."
+            },
+            {
+              "description": "Cook a recipe step by step",
+              "prompt": "Walk me through the carbonara, step by step.",
+              "tools_triggered": "search_recipes, get_recipe, get_cooking_step",
+              "expected_behavior": "Opens the Spaghetti carbonara recipe, or gives one step at a time on request, with a timer offered where a step names a time."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated to recipes, meal plans or shopping lists",
+              "prompt": "What's the weather in Oslo tomorrow?"
+            },
+            {
+              "description": "Foodie has no ordering or payment tools; it can only add items to the shopping list",
+              "prompt": "Order these groceries for delivery to my home."
+            },
+            {
+              "description": "A bulk delete for the whole family must be confirmed by item name before anything is removed",
+              "prompt": "Delete everything on my shopping list."
+            }
+          ]
+        },
+        "demo_recording_url": "https://youtu.be/t4tsRSENRZg",
+        "commerce": false
       }
     }
   }

@@ -72,11 +72,6 @@ catalogue. Everyone in the family sees the change.
   picture's bytes (`imageBase64`, up to 5 MB) if you can read the user's
   attachment. Never invent a link.
 
-## Sharing
-
-`share_recipe` makes a recipe viewable by anyone with the link. Call it only
-when the user asks for a link to share.
-
 ## Weekly plan
 
 If the user wants a plan every week, offer to set up a scheduled task: every
